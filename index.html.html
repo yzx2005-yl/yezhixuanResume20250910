@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶智炫的个人简历</title>
+    <style>
+        :root {
+            --bg-color: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-color: #333;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(255, 255, 255, 0.9);
+            --theme-toggle-bg: #333;
+            --theme-toggle-text: #fff;
+            --primary-color: #0078d7;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: linear-gradient(135deg, #121212 0%, #3a3a3a 100%);
+            --text-color: #f5f5f5;
+            --card-bg: rgba(30, 30, 30, 0.8);
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --hover-bg: rgba(50, 50, 50, 0.9);
+            --theme-toggle-bg: #f5f5f5;
+            --theme-toggle-text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--theme-toggle-bg);
+            color: var(--theme-toggle-text);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card:hover {
+            background-color: var(--hover-bg);
+            transform: translateY(-5px);
+            transition: transform 0.3s;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            color: var(--text-color);
+        }
+
+        p,
+        li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="theme-toggle" id="themeToggle">切换深色模式</button>
+    <div class="container">
+        <header>
+            <img src="yzx.jpg" alt="叶智炫" class="profile-img">
+            <h1>叶智炫</h1>
+            <p>原计算机17班 | 广东河源</p>
+        </header>
+
+        <section class="card">
+            <h2>关于我</h2>
+            <p>大家好，我是叶智炫，来自广东河源。</p>
+        </section>
+
+        <section class="card">
+            <h2>教育背景</h2>
+            <ul>
+                <li>原计算机17班</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>兴趣爱好</h2>
+            <ul>
+                <li>篮球</li>
+                <li>乒乓球</li>
+                <li>台球</li>
+                <li>各种游戏</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.textContent = '切换深色模式';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '切换浅色模式';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
